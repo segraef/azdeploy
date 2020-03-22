@@ -23,6 +23,7 @@ jobs:
       uses: ./.github/actions/azdeploy
       with:
         resourceGroupName: "rg-storage"
+        resourceGroupLocation: "westeurope"
         templateFile: "deploy.json"
         parametersFile: "parameters.json"
         resourceGroupCommand: "create"
