@@ -22,6 +22,6 @@ jobs:
       uses: segraef/azdeploy@v1
       with:
         resourceGroupName: ${{ secrets.resourceGroupName }}
-        templateFile: ${{ secrets.templateFile }}
-        parametersFile: ${{ secrets.parametersFile }}
+        templateFile: "deploy.json"
+        parametersFile: "parameters.json"
         resourceGroupCommand: ${{ secrets.resourceGroupCommand }}
