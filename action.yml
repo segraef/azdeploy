@@ -1,0 +1,30 @@
+name: azdeploy
+description: 'Deploy ARM template'
+inputs:
+  resourceGroupName:
+    description: 'Name of the resource group.'
+    required: true
+  templateFile:
+    description: 'ARM template file location.'
+    required: true
+  parametersFile:
+    description: 'ARM parameters file location.'
+    required: false
+  resrouceGroupCommand:
+    description: 'RG command.'
+    required: false
+outputs:
+  output:
+    description: 'ARM outputs'
+runs:
+  using: "docker"
+  image: "dockerfile"
+  args:
+    - -resourceGroupName
+    - ${{inputs.resourceGroupName}}
+    - -templateFile
+    - ${{inputs.templateFile}}
+    - -parametersFile
+    - ${{inputs.parametersFile}}
+    - -resrouceGroupCommand
+    - ${{inputs.resrouceGroupCommand}}
