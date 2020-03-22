@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/azure-cli:latest
+FROM mcr.microsoft.com/powershell:latest
 
-COPY entry.sh /
+RUN pwsh -c "Install-Module Az -Scope AllUsers -Acceptlicense -Force"
 
-RUN chmod +x /entry.sh
+COPY entry.ps1 /entry.ps1
 
-ENTRYPOINT ["/entry.sh"]
+ENTRYPOINT ["pwsh", "-File", "/entry.ps1"]
