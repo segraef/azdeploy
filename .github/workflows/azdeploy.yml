@@ -1,4 +1,4 @@
-name: azlogin
+name: azdeploy
 
 on:
   push:
