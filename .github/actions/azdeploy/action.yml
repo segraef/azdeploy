@@ -25,10 +25,12 @@ runs:
   image: "dockerfile"
   args:
     - -resourceGroupName
-    - ${{inputs.resourceGroupName}}
+    - ${{ inputs.resourceGroupName }}
+    - -resourceGroupLocation
+    - ${{ inputs.resourceGroupLocation }}
     - -templateFile
-    - ${{inputs.templateFile}}
+    - ${{ inputs.templateFile }}
     - -parametersFile
-    - ${{inputs.parametersFile}}
+    - ${{ inputs.parametersFile }}
     - -resrouceGroupCommand
-    - ${{inputs.resrouceGroupCommand}}
+    - ${{ inputs.resrouceGroupCommand }}
