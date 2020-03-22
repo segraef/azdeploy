@@ -23,7 +23,7 @@ if (-not $resourceGroupName) {
 
 if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
   Write-Output "Executing commands to Create/Update resource group."
-  if (-not (Get-AzResourceGroup - $resourceGroupName)) {
+  if (-not (Get-AzResourceGroup -Name $resourceGroupName) -ErrorAction SilentlyContinue)) {
     if ($resourceGroupLocation ) {
       New-AzResourceGroup -Name $resourceGroupName -Location "$resourceGroupLocation"
       if (-not $parametersFile) {
@@ -54,4 +54,3 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
     }
   }
 }
-
