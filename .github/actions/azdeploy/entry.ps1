@@ -6,16 +6,6 @@ Param(
   [string]$parametersFile
 )
 
-$workspace = $($env:GITHUB_WORKSPACE)
-$workflow = $($env:GITHUB_WORKFLOW)
-$repository = $($env:GITHUB_REPOSITORY)
-
-Write-Output $workspace
-Write-Output $workspace
-Write-Output $repository
-
-Get-ChildItem $workspace
-
 if (-not $resourceGroupName) {
   Write-Output "resourceGroupName is not set."
   exit
@@ -23,7 +13,7 @@ if (-not $resourceGroupName) {
 
 if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
   Write-Output "Executing commands to Create/Update resource group."
-  if (-not (Get-AzResourceGroup -Name $resourceGroupName) -ErrorAction SilentlyContinue)) {
+  if (-not (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)) {
     if ($resourceGroupLocation ) {
       New-AzResourceGroup -Name $resourceGroupName -Location "$resourceGroupLocation"
       if (-not $parametersFile) {
@@ -32,10 +22,9 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
       else {
         if ($templateFile) {
           $DeploymentInputs = @{
-            #Name                  = "$(moduleName)-$(moduleVersion)-$(Get-Date -Format yyyyMMddHHMMss)"
             ResourceGroupName     = "$resourceGroupName"
-            TemplateFile          = "$workspace/${templateFile}"
-            TemplateParameterFile = "$workspace/${parametersFile}"
+            TemplateFile          = "$workspace/$templateFile"
+            TemplateParameterFile = "$workspace/$parametersFile"
             Mode                  = "Incremental"
             Verbose               = $true
             ErrorAction           = "Stop"
