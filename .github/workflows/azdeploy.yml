@@ -20,7 +20,7 @@ jobs:
         subscriptionId: "${{ secrets.subscriptionId }}"
     - name: Azure ARM Deployment
       #uses: segraef/azdeploy@v1
-      uses: action.yml
+      uses: ./.github/actions/azlogin
       with:
         resourceGroupName: "rg-storage"
         templateFile: "deploy.json"
