@@ -6,6 +6,8 @@ Param(
   [string]$parametersFile
 )
 
+Get-ChildItem $($env:GITHUB_WORKSPACE) -recurse
+
 if (-not $resourceGroupName) {
   Write-Output "resourceGroupName is not set."
   exit
