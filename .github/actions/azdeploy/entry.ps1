@@ -6,9 +6,12 @@ Param(
   [string]$parametersFile
 )
 
-Get-Location
-Get-ChildItem $($env:GITHUB_WORKSPACE) -recurse
-$workspace = $($env:GITHUB_WORKSPACE)
+$context = Get-AzContext
+if (!$context) 
+{
+  Write-Output "No Azure context found! Please make sure azlogin has run before."
+  exit
+} 
 
 if (-not $resourceGroupName) {
   Write-Output "resourceGroupName is not set."
@@ -25,7 +28,8 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
       Write-Output "resourceGroupLocation is not set."
       exit
     }
-  } else {
+  }
+  else {
     if (-not $parametersFile) {
       Write-Output "Parameters file parametersFile does not exists." 
     }
@@ -47,4 +51,7 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
       }
     }
   }
+}
+elseif ($resourceGroupCommand -like "delete") {
+  Remove-AzResourceGroup -Name $resourceGroupName -Force
 }

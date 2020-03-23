@@ -26,4 +26,4 @@ jobs:
         resourceGroupLocation: "westeurope"
         templateFile: "Modules/StorageAccount/deploy.json"
         parametersFile: "Modules/StorageAccount/parameters.json"
-        resourceGroupCommand: "create"
+        resourceGroupCommand: "delete"
