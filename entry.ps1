@@ -6,12 +6,6 @@ Param(
   [string]$parametersFile
 )
 
-$resourceGroupName
-$resourceGroupLocation
-$resourceGroupCommand
-$templateFile
-$parametersFile
-
 $context = Get-AzContext
 if (!$context) {
   Write-Output "No Azure context found! Please make sure azlogin has run before."
@@ -28,28 +22,22 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
   if (-not (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)) {
     if ($resourceGroupLocation) {
       New-AzResourceGroup -Name $resourceGroupName -Location "$resourceGroupLocation"
-
-      if ($templateFile -and $parametersFile) {
-        $DeploymentInputs = @{
-          Name                  = "$($env:GITHUB_WORKFLOW)-$($env:GITHUB_ACTOR)-$(Get-Date -Format yyyyMMddHHMMss)"
-          ResourceGroupName     = "$resourceGroupName"
-          TemplateFile          = "$templateFile"
-          TemplateParameterFile = "$parametersFile"
-          Mode                  = "Incremental"
-          Verbose               = $true
-          ErrorAction           = "Stop"
-        }
-        
-        New-AzResourceGroupDeployment @DeploymentInputs
-      }
-      else {
-        Write-Output "Template or parameters file does not exist." 
-      }
     }
-    else {
-      Write-Output "resourceGroupLocation is not set."
-      exit
+  } elseif ($templateFile -and $parametersFile) {
+    $DeploymentInputs = @{
+      Name                  = "$($env:GITHUB_WORKFLOW)-$($env:GITHUB_ACTOR)-$(Get-Date -Format yyyyMMddHHMMss)"
+      ResourceGroupName     = "$resourceGroupName"
+      TemplateFile          = "$templateFile"
+      TemplateParameterFile = "$parametersFile"
+      Mode                  = "Incremental"
+      Verbose               = $true
+      ErrorAction           = "Stop"
     }
+    
+    New-AzResourceGroupDeployment @DeploymentInputs
+  }
+  else {
+    Write-Output "Template or parameters file does not exist." 
   }
 } elseif ($resourceGroupCommand -like "delete") {
   Write-Output "resourceGroupCommand is set to 'delete'. Removing $resourceGroupName now. "
