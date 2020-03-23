@@ -1,8 +1,8 @@
-name: azlogin
+name: azdeploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ v1 ]
   pull_request:
     branches: [ master ]
 
@@ -21,7 +21,8 @@ jobs:
     - name: Azure ARM Deployment
       uses: segraef/azdeploy@v1
       with:
-        resourceGroupName: ${{ secrets.resourceGroupName }}
-        templateFile: "deploy.json"
-        parametersFile: "parameters.json"
-        resourceGroupCommand: ${{ secrets.resourceGroupCommand }}
+        resourceGroupName: "rg-storage"
+        resourceGroupLocation: "westeurope"
+        templateFile: "Modules/StorageAccount/deploy.json"
+        parametersFile: "Modules/StorageAccount/parameters.json"
+        resourceGroupCommand: "create"

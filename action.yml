@@ -4,14 +4,18 @@ inputs:
   resourceGroupName:
     description: 'Name of the resource group.'
     required: true
+  resourceGroupLocation:
+    description: 'Location of the resource group.'
+    required: true
   templateFile:
     description: 'ARM template file location.'
     required: true
   parametersFile:
     description: 'ARM parameters file location.'
-    required: false
-  resrouceGroupCommand:
+    required: true
+  resourceGroupCommand:
     description: 'RG command.'
+    default: 'create'
     required: false
 outputs:
   output:
@@ -21,10 +25,12 @@ runs:
   image: "dockerfile"
   args:
     - -resourceGroupName
-    - ${{inputs.resourceGroupName}}
+    - ${{ inputs.resourceGroupName }}
+    - -resourceGroupLocation
+    - ${{ inputs.resourceGroupLocation }}
     - -templateFile
-    - ${{inputs.templateFile}}
+    - ${{ inputs.templateFile }}
     - -parametersFile
-    - ${{inputs.parametersFile}}
-    - -resrouceGroupCommand
-    - ${{inputs.resrouceGroupCommand}}
+    - ${{ inputs.parametersFile }}
+    - -resourceGroupCommand
+    - ${{ inputs.resourceGroupCommand }}

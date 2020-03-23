@@ -11,10 +11,10 @@ To log into a Azure, I recommend using [azlogin](https://github.com/segraef/azlo
 
 - uses: segraef/azdeploy@v1
   with:
-    resourceGroupName: ${{ secrets.resourceGroupName }}
-    templateFile: ${{ secrets.templateFile }}
-    parametersFile: ${{ secrets.parametersFile }}
-    resourceGroupCommand: ${{ secrets.resourceGroupCommand }}
+    resourceGroupName: "rg-deploy"
+    resourceGroupLocation: "westeurope"
+    templateFile: "deploy.json"
+    parametersFile: "parameters.json"
 
 ```
 
@@ -24,8 +24,9 @@ To log into a Azure, I recommend using [azlogin](https://github.com/segraef/azlo
 
   - If `resourceGroupCommand` is not specified or is "create"
     - `resourceGroupName` – **Mandatory**
-    - `templateFile` – **Mandatory** - Can be a URL or relative path in your github repository
-    - `parametersFile` – **Mandatory** - Can be a URL or relative path in your github repository
+    - `resourceGroupLocation` – **Mandatory**
+    - `templateFile` – **Mandatory** - Relative path in your github repository. URL is in progress.
+    - `parametersFile` – **Mandatory** - Relative path in your github repository. URL is in progress.
     
   -  If `resourceGroupCommand` is "delete"
      - `resourceGroupName` – **Mandatory**
