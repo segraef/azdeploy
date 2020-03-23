@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    # - name: Azure Login
-    #   uses: segraef/azlogin@v1
-    #   with:
-    #     clientId: "${{ secrets.clientId }}"
-    #     clientSecret: "${{ secrets.clientSecret }}"
-    #     tenantId: "${{ secrets.tenantId }}"
-    #     subscriptionId: "${{ secrets.subscriptionId }}"
+    - name: Azure Login
+      uses: segraef/azlogin@v1
+      with:
+        clientId: "${{ secrets.clientId }}"
+        clientSecret: "${{ secrets.clientSecret }}"
+        tenantId: "${{ secrets.tenantId }}"
+        subscriptionId: "${{ secrets.subscriptionId }}"
     - name: Azure ARM Deployment
       #uses: segraef/azdeploy@v1
       uses: ./.github/actions/azdeploy

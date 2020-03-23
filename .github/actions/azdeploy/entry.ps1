@@ -55,4 +55,6 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
 if ($resourceGroupCommand -like "delete") {
   Write-Output "resourceGroupCommand is set to 'delete'. Removing $resourceGroupName now. "
   Remove-AzResourceGroup -Name $resourceGroupName -Force
+} else {
+  Write-output $resourceGroupCommand
 }
