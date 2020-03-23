@@ -6,11 +6,6 @@ Param(
   [string]$parametersFile
 )
 
-Write-Output $($env:GITHUB_ACTOR)
-Write-Output $($env:GITHUB_WORKFLOW)
-Write-Output $($env:GITHUB_REPOSITORY)
-Write-Output $($env:GITHUB_ACTOR)
-
 $context = Get-AzContext
 if (!$context) {
   Write-Output "No Azure context found! Please make sure azlogin has run before."
