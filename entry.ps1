@@ -20,7 +20,7 @@ if (-not $resourceGroupName) {
 if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
   Write-Output "Executing commands to Create/Update resource group."
   if (-not (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)) {
-    if ($resourceGroupLocation ) {
+    if ($resourceGroupLocation) {
       New-AzResourceGroup -Name $resourceGroupName -Location "$resourceGroupLocation"
     }
     else {
@@ -28,28 +28,22 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
       exit
     }
   }
-  else {
-    if (-not $parametersFile) {
-      Write-Output "Parameters file parametersFile does not exists." 
-    }
-    else {
-      if ($templateFile) {
-        $DeploymentInputs = @{
-          ResourceGroupName     = "$resourceGroupName"
-          TemplateFile          = "$templateFile"
-          TemplateParameterFile = "$parametersFile"
-          Mode                  = "Incremental"
-          Verbose               = $true
-          ErrorAction           = "Stop"
-        }
-      
-        New-AzResourceGroupDeployment @DeploymentInputs
-      }
-      else {
-        Write-Output "Template file templateFile does not exists." 
-      }
-    }
+}
+
+if ($templateFile -and $parametersFile) {
+  $DeploymentInputs = @{
+    ResourceGroupName     = "$resourceGroupName"
+    TemplateFile          = "$templateFile"
+    TemplateParameterFile = "$parametersFile"
+    Mode                  = "Incremental"
+    Verbose               = $true
+    ErrorAction           = "Stop"
   }
+  
+  New-AzResourceGroupDeployment @DeploymentInputs
+}
+else {
+  Write-Output "Template or parameters file does not exist." 
 }
 
 if ($resourceGroupCommand -like "delete") {

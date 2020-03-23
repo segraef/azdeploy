@@ -12,7 +12,7 @@ inputs:
     required: true
   parametersFile:
     description: 'ARM parameters file location.'
-    required: false
+    required: true
   resourceGroupCommand:
     description: 'RG command.'
     default: 'create'
