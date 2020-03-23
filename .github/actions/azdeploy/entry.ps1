@@ -7,8 +7,8 @@ Param(
 )
 
 Get-Location
-Get-ChildItem -recurse
 Get-ChildItem $($env:GITHUB_WORKSPACE) -recurse
+$workspace = $($env:GITHUB_WORKSPACE)
 
 if (-not $resourceGroupName) {
   Write-Output "resourceGroupName is not set."
@@ -31,11 +31,10 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
     }
     else {
       if ($templateFile) {
-        Write-Output $templateFile
         $DeploymentInputs = @{
           ResourceGroupName     = "$resourceGroupName"
-          TemplateFile          = "$workspace/$templateFile"
-          TemplateParameterFile = "$workspace/$parametersFile"
+          TemplateFile          = "$templateFile"
+          TemplateParameterFile = "$parametersFile"
           Mode                  = "Incremental"
           Verbose               = $true
           ErrorAction           = "Stop"
