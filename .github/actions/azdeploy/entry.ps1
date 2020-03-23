@@ -18,7 +18,7 @@ if (-not $resourceGroupName) {
   exit
 }
 
-if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
+if (-not $resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
   Write-Output "Executing commands to Create/Update resource group."
   if (-not (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)) {
     if ($resourceGroupLocation ) {
