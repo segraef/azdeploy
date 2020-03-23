@@ -24,6 +24,6 @@ jobs:
       with:
         resourceGroupName: "rg-storage"
         resourceGroupLocation: "westeurope"
-        templateFile: "deploy.json"
-        parametersFile: "parameters.json"
+        templateFile: "./.github/workflows/deploy.json"
+        parametersFile: "./.github/workflows/parameters.json"
         resourceGroupCommand: "create"
