@@ -6,6 +6,7 @@ Param(
   [string]$parametersFile
 )
 
+Get-ChildItem -recurse
 Get-ChildItem $($env:GITHUB_WORKSPACE) -recurse
 
 if (-not $resourceGroupName) {
