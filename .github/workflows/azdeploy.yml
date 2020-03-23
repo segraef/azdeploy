@@ -19,11 +19,10 @@ jobs:
         tenantId: "${{ secrets.tenantId }}"
         subscriptionId: "${{ secrets.subscriptionId }}"
     - name: Azure ARM Deployment
-      #uses: segraef/azdeploy@v1
-      uses: ./.github/actions/azdeploy
+      uses: segraef/azdeploy@v1
       with:
         resourceGroupName: "rg-storage"
         resourceGroupLocation: "westeurope"
         templateFile: "Modules/StorageAccount/deploy.json"
         parametersFile: "Modules/StorageAccount/parameters.json"
-        resourceGroupCommand: "delete"
+        resourceGroupCommand: "create"
