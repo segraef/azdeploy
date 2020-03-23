@@ -6,6 +6,7 @@ Param(
   [string]$parametersFile
 )
 
+Get-Location
 Get-ChildItem -recurse
 Get-ChildItem $($env:GITHUB_WORKSPACE) -recurse
 
