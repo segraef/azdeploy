@@ -7,8 +7,7 @@ Param(
 )
 
 $context = Get-AzContext
-if (!$context) 
-{
+if (!$context) {
   Write-Output "No Azure context found! Please make sure azlogin has run before."
   exit
 } 
@@ -52,8 +51,8 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
     }
   }
 }
-elseif ($resourceGroupCommand -like "delete") {
+
+if ($resourceGroupCommand -like "delete") {
+  Write-Output "resourceGroupCommand is set to 'delete'. Removing $resourceGroupName now. "
   Remove-AzResourceGroup -Name $resourceGroupName -Force
-} else {
-  Write-Output "Something wnet wrong, please check your inputs."
 }
