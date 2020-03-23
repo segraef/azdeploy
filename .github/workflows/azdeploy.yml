@@ -24,6 +24,6 @@ jobs:
       with:
         resourceGroupName: "rg-storage"
         resourceGroupLocation: "westeurope"
-        templateFile: "deploy.json"
-        parametersFile: "parameters.json"
+        templateFile: "Modules/StorageAccount/deploy.json"
+        parametersFile: "Modules/StorageAccount/parameters.json"
         resourceGroupCommand: "create"
