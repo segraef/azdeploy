@@ -32,5 +32,5 @@ runs:
     - ${{ inputs.templateFile }}
     - -parametersFile
     - ${{ inputs.parametersFile }}
-    - -resrouceGroupCommand
-    - ${{ inputs.resrouceGroupCommand }}
+    - -resourceGroupCommand
+    - ${{ inputs.resourceGroupCommand }}
