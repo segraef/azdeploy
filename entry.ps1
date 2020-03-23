@@ -6,6 +6,12 @@ Param(
   [string]$parametersFile
 )
 
+$resourceGroupName
+$resourceGroupLocation
+$resourceGroupCommand
+$templateFile
+$parametersFile
+
 $context = Get-AzContext
 if (!$context) {
   Write-Output "No Azure context found! Please make sure azlogin has run before."
