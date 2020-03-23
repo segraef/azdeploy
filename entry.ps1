@@ -37,7 +37,7 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
 
 if ($templateFile -and $parametersFile) {
   $DeploymentInputs = @{
-    Name                  = "GitHub-$($env:GITHUB_WORKFLOW)-$($env:GITHUB_ACTOR)-$(Get-Date -Format yyyyMMddHHMMss)"
+    Name                  = "$($env:GITHUB_WORKFLOW)-$($env:GITHUB_ACTOR)-$(Get-Date -Format yyyyMMddHHMMss)"
     ResourceGroupName     = "$resourceGroupName"
     TemplateFile          = "$templateFile"
     TemplateParameterFile = "$parametersFile"
