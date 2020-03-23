@@ -6,6 +6,11 @@ Param(
   [string]$parametersFile
 )
 
+Write-Output $($env:GITHUB_ACTOR)
+Write-Output $($env:GITHUB_WORKFLOW)
+Write-Output $($env:GITHUB_REPOSITORY)
+Write-Output $($env:GITHUB_ACTOR)
+
 $context = Get-AzContext
 if (!$context) {
   Write-Output "No Azure context found! Please make sure azlogin has run before."
@@ -32,6 +37,7 @@ if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
 
 if ($templateFile -and $parametersFile) {
   $DeploymentInputs = @{
+    Name                  = "GitHub-$($env:GITHUB_WORKFLOW)-$($env:GITHUB_ACTOR)-$(Get-Date -Format yyyyMMddHHMMss)"
     ResourceGroupName     = "$resourceGroupName"
     TemplateFile          = "$templateFile"
     TemplateParameterFile = "$parametersFile"
