@@ -31,6 +31,7 @@ if (-not $resourceGroupCommand -or ($resourceGroupCommand -like "create")) {
     }
     else {
       if ($templateFile) {
+        Write-Output $templateFile
         $DeploymentInputs = @{
           ResourceGroupName     = "$resourceGroupName"
           TemplateFile          = "$workspace/$templateFile"
