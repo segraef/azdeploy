@@ -18,7 +18,7 @@ if (-not $resourceGroupName) {
   exit
 }
 
-if (-not $resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
+if ($resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
   Write-Output "Executing commands to Create/Update resource group."
   if (-not (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)) {
     if ($resourceGroupLocation ) {
@@ -54,4 +54,6 @@ if (-not $resourceGroupCommand -and ($resourceGroupCommand -like "create")) {
 }
 elseif ($resourceGroupCommand -like "delete") {
   Remove-AzResourceGroup -Name $resourceGroupName -Force
+} else {
+  Write-Output "Something wnet wrong, please check your inputs."
 }
