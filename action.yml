@@ -13,6 +13,12 @@ inputs:
   parametersFile:
     description: 'ARM parameters file location.'
     required: true
+  templateUri:
+    description: 'ARM template file location URI.'
+    required: true
+  parametersUri:
+    description: 'ARM parameters file location URI.'
+    required: true
   resourceGroupCommand:
     description: 'RG command.'
     default: 'create'
@@ -32,5 +38,9 @@ runs:
     - ${{ inputs.templateFile }}
     - -parametersFile
     - ${{ inputs.parametersFile }}
+    - -templateUri
+    - ${{ inputs.templateUri }}
+    - -parametersUri
+    - ${{ inputs.parametersUri }}
     - -resourceGroupCommand
     - ${{ inputs.resourceGroupCommand }}
