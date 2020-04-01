@@ -18,6 +18,7 @@ jobs:
         clientSecret: "${{ secrets.clientSecret }}"
         tenantId: "${{ secrets.tenantId }}"
         subscriptionId: "${{ secrets.subscriptionId }}"
+        identity: "no"
     - name: Azure ARM Deployment
       uses: segraef/azdeploy@v1
       with:
