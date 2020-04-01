@@ -29,8 +29,10 @@ segraef/azlogin@v1
   - If `resourceGroupCommand` is not specified or is "create"
     - `resourceGroupName` – **Mandatory**
     - `resourceGroupLocation` – **Mandatory**
-    - `templateFile` – **Mandatory** - Relative path in your github repository. URL is in progress.
-    - `parametersFile` – **Mandatory** - Relative path in your github repository. URL is in progress.
+    - `templateFile` – **Mandatory** - Relative path in your github repository.
+    - `parametersFile` – **Mandatory** - Relative path in your github repository.
+    - `templateUri` – **Optional** - Template Uri.
+    - `parametersUri` – **Optional** - Parameters URI.
     
   -  If `resourceGroupCommand` is "delete"
      - `resourceGroupName` – **Mandatory**
